@@ -1,0 +1,23 @@
+{
+  "name": "gayol-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "es-dev-server --node-resolve --watch"
+  },
+  "author": "Alejandro Soto",
+  "license": "ISC",
+  "dependencies": {
+    "@material/mwc-icon": "^0.19.1",
+    "@material/mwc-switch": "^0.19.1",
+    "@shoelace-style/shoelace": "^2.0.0-beta.21",
+    "@vaadin/vaadin-button": "^2.4.0",
+    "@vaadin/vaadin-text-field": "^2.8.1",
+    "@vaadin/vaadin-upload": "^4.4.0",
+    "lit-element": "2.4.0"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.57.8"
+  }
+}
