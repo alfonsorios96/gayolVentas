@@ -1,11 +1,13 @@
-import { LitElement, html, css } from 'lit-element';
+import { html, css } from 'lit-element';
 import '@vaadin/vaadin-text-field/vaadin-text-field.js';
 import '@vaadin/vaadin-text-field/vaadin-password-field.js';
 import '@vaadin/vaadin-text-field/vaadin-email-field.js';
 import '@vaadin/vaadin-button';
 import '@vaadin/vaadin-upload/vaadin-upload.js';
+import {GayolController} from '../GayolController';
 
-class RegisterUser extends LitElement {
+
+class RegisterUser extends GayolController {
     
     static get properties() {
         return {
@@ -46,21 +48,16 @@ class RegisterUser extends LitElement {
     async register(e) { //metodo manejador
         e.preventDefault();
         const [Nombre, Email, Role, Password, Username] = this.shadowRoot.querySelectorAll('.form-control');
-        const body = JSON.stringify({ 
+        const body = { 
                 name: Nombre.value, 
                 email: Email.value,
                 role: Role.value,
                 password: Password.value,
                 username: Username.value
-            })
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body 
-        }
-        const registerSubmit = await (await fetch('http://localhost:5000/api/v1/auth/register', options)).json();
+            };
+            
+        const registerResponse = await this.__request('auth/register' ,'POST', {}, body);
+        console.log(registerResponse);
     }
 
 
