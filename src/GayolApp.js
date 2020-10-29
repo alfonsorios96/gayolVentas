@@ -21,7 +21,7 @@ class GayolApp extends LitElement {
 
     render() {
         return html`
-            <register-user></register-user>
+            <gayol-grid></gayol-grid>
         `;
     }
 }
