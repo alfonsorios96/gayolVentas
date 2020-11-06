@@ -1,6 +1,9 @@
 import { LitElement, html, css } from 'lit-element';
-import './GayolGrid';
+import './components/GayolGrid';
 import './login/RegisterUser';
+import './components/ListComponent';
+import './login/LoginUser';
+import './Pages/PrincipalPage';
 
 class GayolApp extends LitElement {
 
@@ -21,7 +24,7 @@ class GayolApp extends LitElement {
 
     render() {
         return html`
-            <gayol-grid></gayol-grid>
+            <principal-page></principal-page>
         `;
     }
 }

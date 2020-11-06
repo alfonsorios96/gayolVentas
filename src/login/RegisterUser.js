@@ -4,7 +4,7 @@ import '@vaadin/vaadin-text-field/vaadin-password-field.js';
 import '@vaadin/vaadin-text-field/vaadin-email-field.js';
 import '@vaadin/vaadin-button';
 import '@vaadin/vaadin-upload/vaadin-upload.js';
-import {GayolController} from '../GayolController';
+import {GayolController} from '../helpers/GayolController';
 
 
 class RegisterUser extends GayolController {

@@ -9,7 +9,11 @@ class CardHouse extends LitElement {
             title: String,
             description: String,
             sub_title: String,
-            status: Boolean
+            status: Boolean,
+            address: String,
+            suburb: String,
+            town: String,
+            state: String,
         };
     }
 
@@ -17,10 +21,14 @@ class CardHouse extends LitElement {
     constructor() {
         super();
         this.img = '';
-        this.title = '' 
-        this.description = '' 
-        this.sub_title = '' 
-        this.status = false;
+        this.title = '';
+        this.description = '';
+        this.sub_title = '';
+        this.status = true;
+        this.address = '';
+        this.suburb = '';
+        this.town = '';
+        this.state = '';
     }
 
     static get styles() {
@@ -121,10 +129,10 @@ class CardHouse extends LitElement {
                     <span class="date">${this.sub_title}</span>
                     <h2>${this.title}</h2>
                     <p>
-                        <slot name="calle"></slot>
-                        <slot name="colonia"></slot>
-                        </label><slot name="numero"></slot>
-                        ${this.description}
+                        <h5>Direccion</h5>
+                        <label>Calle: </label>${this.address} <label>Colonia: </label>${this.suburb}
+                        <label>Municipio: </label>${this.town} <label>Estado: </label>${this.state}
+                        <slot name="descripcion"></slot> 
                     </p>
                 </div>
                 <div class="card-stats">
