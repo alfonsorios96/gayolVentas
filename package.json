@@ -21,7 +21,8 @@
     "@vaadin/vaadin-tabs": "^3.2.0",
     "@vaadin/vaadin-text-field": "^2.8.1",
     "@vaadin/vaadin-upload": "^4.4.0",
-    "lit-element": "2.4.0"
+    "lit-element": "2.4.0",
+    "xlsx": "^0.16.8"
   },
   "devDependencies": {
     "es-dev-server": "^1.57.8"

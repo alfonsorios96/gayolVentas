@@ -8,9 +8,10 @@ import '@vaadin/vaadin-icons';
 import '@vaadin/vaadin-button';
 import '@vaadin/vaadin-tabs/vaadin-tab';
 import '@vaadin/vaadin-tabs/vaadin-tabs';
+import { GayolController } from '../helpers/GayolController';
 
 
-class PrincipalPage extends LitElement {
+class PrincipalPage extends GayolController {
     static get properties() {
         return {}
     }
@@ -49,6 +50,10 @@ class PrincipalPage extends LitElement {
             <iron-icon icon="vaadin:question"></iron-icon>
             Page 4
         </vaadin-tab>
+        <vaadin-tab @click="${this.logOut}">
+            <iron-icon icon="vaadin:question"></iron-icon>
+            Cerrar
+        </vaadin-tab>
     </vaadin-tabs>
 
     <div class="content">
@@ -58,6 +63,16 @@ class PrincipalPage extends LitElement {
     </div>
 </vaadin-app-layout>
         `;
+    }
+
+    updated() {
+        this.__authRequest(false,() => {
+            this.dispatchEvent(new CustomEvent('logout-request'));
+        })
+    }
+
+    logOut() {
+        this.dispatchEvent(new CustomEvent('logout-request'));
     }
 }
 

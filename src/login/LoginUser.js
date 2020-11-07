@@ -69,10 +69,10 @@ class LoginUser extends GayolController {
                 const loginForm = this.shadowRoot.querySelector('vaadin-login-overlay');
                 loginForm.error = true;
                 loginForm.disabled = false;
+            } else {
+                localStorage.setItem('token', LoginUser.token);
+                this.dispatchEvent(new CustomEvent('login-success'))
             }
-            localStorage.setItem('token', LoginUser.token);
-            //TODO: preguntar como navegar a otro componente
-            // FIXME: para crear elementos con document y no con shadowRoot
             await this.requestUpdate();
         } catch (error) {
             console.log(error, 'error de login');

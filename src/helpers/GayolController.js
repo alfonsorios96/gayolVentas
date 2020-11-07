@@ -35,5 +35,15 @@ export class GayolController extends LitElement {
             return error;
         }
     }
+
+    __authRequest(isLogged,cb) {
+        const token = localStorage.getItem('token');
+        if (isLogged && token && token !== '') {
+            cb();
+        }
+        if (!isLogged && (!token || token === '')) {
+            cb();
+        }
+    }
 }
 

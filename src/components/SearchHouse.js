@@ -52,10 +52,10 @@ class SearchHouse extends GayolController {
             estado: Estado
         }
 
-        const searchPropertie = await this.__request('/search', 'POST', {}, body);
+        const findHouse = await this.__request('/search', 'POST', {}, body);
         this.dispatchEvent(new CustomEvent('search-propertie', {
             detail: {
-                data: searchPropertie
+                data: findHouse
             }
         }))
     }

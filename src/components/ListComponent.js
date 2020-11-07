@@ -1,6 +1,9 @@
 import { LitElement, html, css } from 'lit-element';
 import { GayolController } from '../helpers/GayolController';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
+import '@vaadin/vaadin-grid/vaadin-grid-sort-column';
+import '@vaadin/vaadin-grid/vaadin-grid-selection-column';
+
 
 class ListComponent extends GayolController {
     static get properties() {
@@ -18,10 +21,11 @@ class ListComponent extends GayolController {
     }
 
     firstUpdated(changeProperties) {
-        const grid = this.shadowRoot.querySelector('vaadin-grid');
+        /*  const grid = this.shadowRoot.querySelector('vaadin-grid');
         this.__request('http://localhost:5000/api/v1/ListaVentas')
             .then(resp => resp.json())
-            .then(data => console.log(data))
+            .then(data => console.log(data)) */
+        this._demoTable();
     }
 
     render() {
@@ -34,7 +38,16 @@ class ListComponent extends GayolController {
         `;
     }
 
+    _demoTable() {
+        const data = [
+            { firstName: 'Alex', lastName: 'Soto' },
+            { firstName: 'Cari', lastName: 'Torres' },
+            { firstName: 'Ernesto', lastName: 'Guerrero' }
+        ];
 
+        const table = this.shadowRoot.querySelector('vaadin-grid')
+        table.items = data;
+    }
 
 }
 
