@@ -91,6 +91,8 @@ class CardComponent extends LitElement {
         this.state = '';
     }
 
+    // TODO: PONER ESTILOS EN LOS BOTONES DE VER MAS Y STATUS
+
     render() {
         return html`
             <div class="card">

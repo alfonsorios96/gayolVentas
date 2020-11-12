@@ -81,6 +81,9 @@ class DashboardPage extends GayolController {
         `;
     }
 
+    // FIXME: FUNCINALIDAD DE ROUTING
+    // BUG: REGRESH TOKEN
+
     async updated() {
         await this.__authRequest(false,() => {
             this.dispatchEvent(new CustomEvent('logout-request'));

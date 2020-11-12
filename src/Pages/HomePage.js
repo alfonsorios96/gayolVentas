@@ -19,7 +19,7 @@ class HomePage extends LitElement {
     constructor() {
         super();
     }
-
+    // TODO: DARA FUNCIONALIDAD A SEARCH CON ENDPOINT Y FUNCIONALIODAD DINAMICA AL GRID
     render() {
         return html`
             <search-house></search-house>
