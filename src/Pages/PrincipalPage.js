@@ -66,7 +66,7 @@ class PrincipalPage extends GayolController {
     }
 
     updated() {
-        this.__authRequest(false,() => {
+        this.__authRequestPrueba(() => {
             this.dispatchEvent(new CustomEvent('logout-request'));
         })
     }

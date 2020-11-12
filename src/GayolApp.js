@@ -36,16 +36,16 @@ class GayolApp extends GayolController {
         `;
     }
 
-    updated() {
-        this.__authRequest(true,() => {
+    async updated() {
+        await this.__authRequestPrueba(() => {
             this.view = 'dashboard';
-        })
+        });
     }
 
-    _accessApp() {
-        this.__authRequest(true, () => {
+    async _accessApp() {
+        await this.__authRequestPrueba(() => {
             this.view = 'dashboard';
-        })
+        });
     }
 
     _logOut() {

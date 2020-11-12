@@ -45,5 +45,18 @@ export class GayolController extends LitElement {
             cb();
         }
     }
+
+    async __authRequestPrueba(cb) {
+        const token = localStorage.getItem('token');
+        const request = await fetch(`http://localhost:5000/api/v1/auth/verify/${token}`)
+        const verify = await request.json();
+        console.log(verify);
+        if ( verify.verify) {
+            cb();
+        }
+        if (!verify.verify) {
+            cb();
+        }
+    }
 }
 

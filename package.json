@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "es-dev-server --node-resolve --watch"
+    "dev": "es-dev-server --node-resolve --watch --open",
+    "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "author": "Alejandro Soto",
   "license": "ISC",
@@ -25,6 +26,11 @@
     "xlsx": "^0.16.8"
   },
   "devDependencies": {
-    "es-dev-server": "^1.57.8"
+    "es-dev-server": "^1.57.8",
+    "rollup": "^2.33.1",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-copy": "^3.3.0",
+    "rimraf": "^3.0.2"
   }
 }
