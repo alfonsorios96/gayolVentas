@@ -36,7 +36,7 @@ export class GayolController extends LitElement {
         }
     }
 
-    __authRequest(isLogged,cb) {
+    /* __authRequest(isLogged,cb) {
         const token = localStorage.getItem('token');
         if (isLogged && token && token !== '') {
             cb();
@@ -44,18 +44,20 @@ export class GayolController extends LitElement {
         if (!isLogged && (!token || token === '')) {
             cb();
         }
-    }
+    } */ 
 
-    async __authRequestPrueba(cb) {
+    async __authRequest(isLogged,cb) {
         const token = localStorage.getItem('token');
-        const request = await fetch(`http://localhost:5000/api/v1/auth/verify/${token}`)
-        const verify = await request.json();
-        console.log(verify);
-        if ( verify.verify) {
-            cb();
-        }
-        if (!verify.verify) {
-            cb();
+        try {
+            const verify = await this.__request(`auth/verify/${token}`);
+            if (isLogged && verify.verify) {
+                cb();
+            }
+            if (!isLogged && verify.success === false) {
+                cb();
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 }

@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import './CardHose';
+import './CardComponent';
 
 class GayolGrid extends LitElement {
     
@@ -13,8 +13,8 @@ class GayolGrid extends LitElement {
         return css`
             .cards {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
             }
         `
     }
@@ -36,6 +36,40 @@ class GayolGrid extends LitElement {
                 suburb: 'bosques de aragon',
                 town: 'Nezayork',
                 state: 'Queretaro'
+            },
+            {
+                img: 'https://img.autocosmos.com/noticias/fotosprinc/NAZ_531851e7cb744d8e888dc802f1603cb4.jpg',
+                title: 'el poncho',
+                description: 'esta pelon',
+                sub_title: 'pelonchas',
+                status: true,
+                address: 'calle bosques de argelia 54',
+                suburb: 'bosques de aragon',
+                town: 'Nezayork',
+                state: 'Queretaro'
+            },
+            {
+                img: 'https://img.autocosmos.com/noticias/fotosprinc/NAZ_531851e7cb744d8e888dc802f1603cb4.jpg',
+                title: 'el poncho',
+                description: 'esta pelon',
+                sub_title: 'pelonchas',
+                status: true,
+                address: 'calle bosques de argelia 54',
+                suburb: 'bosques de aragon',
+                town: 'Nezayork',
+                state: 'Queretaro'
+            },
+
+            {
+                img: 'https://img.autocosmos.com/noticias/fotosprinc/NAZ_531851e7cb744d8e888dc802f1603cb4.jpg',
+                title: 'el poncho',
+                description: 'esta pelon',
+                sub_title: 'pelonchas',
+                status: true,
+                address: 'calle bosques de argelia 54',
+                suburb: 'bosques de aragon',
+                town: 'Nezayork',
+                state: 'Queretaro'
             }
         ]
     }
@@ -45,7 +79,7 @@ class GayolGrid extends LitElement {
         return html`
             <div class="cards">
                 ${this.houses.map(house => html`
-                    <card-house .img="${house.img}"
+                    <card-component .img="${house.img}"
                                 .description="${house.description}"
                                 .status="${house.status}"
                                 .title="${house.title}"
@@ -53,7 +87,7 @@ class GayolGrid extends LitElement {
                                 .address="${house.address}"
                                 .suburb="${house.suburb}"
                                 .state="${house.state}">
-                    </card-house>
+                    </card-component>
                 `)}
             </div>
         `;

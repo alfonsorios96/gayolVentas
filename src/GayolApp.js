@@ -3,14 +3,14 @@ import './components/GayolGrid';
 import './login/RegisterUser';
 import './components/ListComponent';
 import './login/LoginUser';
-import './Pages/PrincipalPage';
+import './Pages/DashboardPage';
 import { GayolController } from './helpers/GayolController';
 
 class GayolApp extends GayolController {
 
     static get properties() {
         return {
-            view: String
+            page: String
         };
     }
 
@@ -21,36 +21,38 @@ class GayolApp extends GayolController {
 
     constructor() {
         super();
-        this.view = 'login';
+        this.page = 'login';
     }
 
     render() {
         return html`
-            ${this.view === 'login' ? html`
+            ${this.page === 'login' ? html`
                 <login-user @login-success="${this._accessApp}"></login-user>
             `: ''}
-            ${this.view === 'dashboard' ? html`
-                <principal-page @logout-request="${this._logOut}"></principal-page>
+            ${this.page === 'dashboard' ? html`
+                <dashboard-page @logout-request="${this._logOut}"></dashboard-page>
             `: ''}
             
         `;
     }
 
     async updated() {
-        await this.__authRequestPrueba(() => {
-            this.view = 'dashboard';
+        await this.__authRequest(true,() => {
+            this.page = 'dashboard';
         });
     }
 
+    //FIXME: PREGUNTAR COMO QUITAR EL ERROR DE LA PRIMERA LLAMADA
+
     async _accessApp() {
-        await this.__authRequestPrueba(() => {
-            this.view = 'dashboard';
+        await this.__authRequest(true,() => {
+            this.page = 'dashboard';
         });
     }
 
     _logOut() {
         localStorage.removeItem('token');
-        this.view = 'login';
+        this.page = 'login';
     }
 }
 
