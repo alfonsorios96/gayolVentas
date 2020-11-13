@@ -14,7 +14,7 @@ const copyConfig = {
     targets: [
         { 
             src: 'index.html',
-            dest:'docs', 
+            dest:'dist', 
             transform: (content) => 
                         content.toString().replace('./src/GayolApp.js', `./${name}`) 
         }
@@ -24,7 +24,7 @@ const copyConfig = {
 const config = {
     input: './src/GayolApp.js',
     output: {
-        file: `docs/${name}`
+        file: `dist/${name}`
     },
     plugins: [ resolve(), copy(copyConfig), filesize(filesizeConfig) ]
 };
