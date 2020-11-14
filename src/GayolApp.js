@@ -10,7 +10,7 @@ class GayolApp extends GayolController {
 
     static get properties() {
         return {
-            page: String
+            page: { type: String }
         };
     }
 

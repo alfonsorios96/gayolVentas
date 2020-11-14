@@ -82,7 +82,7 @@ class DashboardPage extends GayolController {
     }
 
     // FIXME: FUNCINALIDAD DE ROUTING
-    // BUG: REGRESH TOKEN
+    // BUG: generar un endpoin de filtro para excel
 
     async updated() {
         await this.__authRequest(false,() => {

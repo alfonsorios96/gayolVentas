@@ -46,18 +46,22 @@ export class GayolController extends LitElement {
         }
     } */ 
 
-    async __authRequest(isLogged,cb) {
+    async __authRequest(isLogged,cb = () => {}) {
         const token = localStorage.getItem('token');
-        try {
-            const verify = await this.__request(`auth/verify/${token}`);
-            if (isLogged && verify.verify) {
-                cb();
+        if (token) {
+            try {
+                const verify = await this.__request(`auth/verify/${token}`);
+                if (isLogged && verify.verify) {
+                    cb();
+                    return true;
+                }
+                if (!(isLogged && verify.success)) {
+                    cb();
+                    return false;
+                }
+            } catch (error) {
+                console.log(error);
             }
-            if (!isLogged && verify.success === false) {
-                cb();
-            }
-        } catch (error) {
-            console.log(error);
         }
     }
 }
