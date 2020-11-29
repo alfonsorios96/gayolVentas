@@ -6,6 +6,7 @@ import './login/LoginUser';
 import './Pages/DashboardPage';
 import { GayolController } from './helpers/GayolController';
 
+
 class GayolApp extends GayolController {
 
     static get properties() {
@@ -24,7 +25,26 @@ class GayolApp extends GayolController {
         this.page = 'login';
     }
 
+    async firstUpdated() {
+        try {
+            const resolve = await fetch('http://localhost:5000/api/v1/ListaVentas/exceptions', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    id: 3
+                })
+            })
+
+            console.log(resolve);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render() {
+        // TODO: REFACTOR DE RUTAS
         return html`
             ${this.page === 'login' ? html`
                 <login-user @login-success="${this._accessApp}"></login-user>

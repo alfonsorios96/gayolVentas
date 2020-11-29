@@ -50,33 +50,38 @@ class LoginUser extends GayolController {
     }
 
     async validateUser(body) {
-        const LoginUser = await this.__request('auth/login', 'POST', {}, body);
-        if (!LoginUser.success) {
-            const dialog = this.shadowRoot.querySelector('#dialog');
-            dialog.renderer = (root, _dialog) => {
-                if (!root.firstElementChild)  {
-                    const message = document.createElement('p');
-                    message.textContent = `${LoginUser.error}`;
-                    const close = document.createElement('vaadin-button');
-                    close.textContent = 'Close';
-                    close.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        dialog.opened = false;
-                    });
+        try {
+            const LoginUser = await this.__request('auth/login', 'POST', {}, body);
+            if (!LoginUser.success) {
+                const dialog = this.shadowRoot.querySelector('#dialog');
+                dialog.renderer = (root, _dialog) => {
+                    if (!root.firstElementChild)  {
+                        const message = document.createElement('p');
+                        message.textContent = `${LoginUser.error}`;
+                        const close = document.createElement('vaadin-button');
+                        close.textContent = 'Close';
+                        close.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            dialog.opened = false;
+                        });
 
-                    root.appendChild(message);
-                    root.appendChild(close);
+                        root.appendChild(message);
+                        root.appendChild(close);
+                    }
                 }
+                dialog.opened = true;
+                const loginForm = this.shadowRoot.querySelector('vaadin-login-overlay');
+                loginForm.error = true;
+                loginForm.disabled = false;
+            } else {
+                localStorage.setItem('token', LoginUser.token);
+                this.dispatchEvent(new CustomEvent('login-success'))
             }
-            dialog.opened = true;
-            const loginForm = this.shadowRoot.querySelector('vaadin-login-overlay');
-            loginForm.error = true;
-            loginForm.disabled = false;
-        } else {
-            localStorage.setItem('token', LoginUser.token);
-            this.dispatchEvent(new CustomEvent('login-success'))
+            await this.requestUpdate();
+        } catch (error) {
+            console.log(error);
         }
-        await this.requestUpdate();
+        
     }
 
     _forgotPassword() {}
