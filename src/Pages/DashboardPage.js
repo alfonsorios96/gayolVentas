@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element';
+import { html, css } from 'lit-element';
 import '@vaadin/vaadin-app-layout';
 import '@vaadin/vaadin-app-layout/vaadin-app-layout';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle';
@@ -52,7 +52,7 @@ class DashboardPage extends GayolController {
             <iron-icon icon="vaadin:list"></iron-icon>
             Lista
         </vaadin-tab>
-        <vaadin-tab tab-page="upload-list" @click="${this.__changePage}">
+        <vaadin-tab tab-page="upload" @click="${this.__changePage}">
             <iron-icon icon="vaadin:options"></iron-icon>
             Subir Listas
         </vaadin-tab>
@@ -81,8 +81,10 @@ class DashboardPage extends GayolController {
         `;
     }
 
-    // FIXME: FUNCINALIDAD DE ROUTING
-    // BUG: generar un endpoin de filtro para excel
+    // FIXME: RUTAS HIJAS EN EL DASHBOARD PAGE
+    // TODO: generar un endpoin de filtro para excel
+    // TODO: GENERAR UN ENDOPIN PARA CARGAR ARCHIBO DE EXCEL
+    // TODO: PROTECCION DE LAS RUTAS
 
     async updated() {
         await this.__authRequest(false,() => {
@@ -91,13 +93,16 @@ class DashboardPage extends GayolController {
     }
 
     __changePage(e) {
+        // TODO: REFACTOR DE RUTAS HJAS PARA EL DASBOARD
         const page = e.currentTarget.getAttribute('tab-page');
-        this.page = page;
+       this.page = page;
     }
 
     logOut() {
         this.dispatchEvent(new CustomEvent('logout-request'));
     }
+
+    
 }
 
 window.customElements.define('dashboard-page', DashboardPage);

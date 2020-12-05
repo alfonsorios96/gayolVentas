@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "es-dev-server --app-index index.html --node-resolve --watch --open",
+    "serve:open": "es-dev-server --app-index index.html --node-resolve --watch --open",
+    "serve": "es-dev-server --app-index index.html --node-resolve --watch",
     "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "author": "Alejandro Soto",

@@ -25,23 +25,6 @@ class GayolApp extends GayolController {
         this.page = 'login';
     }
 
-    async firstUpdated() {
-        try {
-            const resolve = await fetch('http://localhost:5000/api/v1/ListaVentas/exceptions', {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method: 'POST',
-                body: JSON.stringify({
-                    id: 3
-                })
-            })
-
-            console.log(resolve);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     render() {
         // TODO: REFACTOR DE RUTAS
@@ -62,12 +45,18 @@ class GayolApp extends GayolController {
         });
     }
 
-    //FIXME: PREGUNTAR COMO QUITAR EL ERROR DE LA PRIMERA LLAMADA
-
+    
     async _accessApp() {
-        await this.__authRequest(true,() => {
-            this.page = 'dashboard';
-        });
+        try {
+            await this.__authRequest(true,() => {
+                /* this.page = 'dashboard'; */
+                console.log('entro esn acces')
+                window.location = '/dashboard';
+            });
+        
+        } catch (error) {
+            console.error(error, 'error al accesar')
+        }
     }
 
     _logOut() {
